@@ -4,6 +4,7 @@ namespace Octava\Bundle\JobQueueBundle\DependencyInjection\Compiler;
 
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Octava\Bundle\JobQueueBundle\Config;
 
 /**
  * Class DefaultQueueCompiler
@@ -19,13 +20,13 @@ class DefaultQueueCompiler implements CompilerPassInterface
     public function process(ContainerBuilder $container)
     {
         $options = $container->getParameter('jms_job_queue.queue_options');
-        $config = $container->getDefinition('octava.job_queue.config');
+        $config = $container->getDefinition(Config::class);
         if (!empty($options)) {
             $config->addArgument($options);
         }
         $container->setParameter('jms_job_queue.statistics', false);
 
-        $queues = $container->get('octava.job_queue.config')->getLockQueues();
+        $queues = $container->get(Config::class)->getLockQueues();
         foreach ($queues as $queue) {
             $options[$queue] = ['max_concurrent_jobs' => 1];
         }

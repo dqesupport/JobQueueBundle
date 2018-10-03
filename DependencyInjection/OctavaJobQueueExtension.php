@@ -2,6 +2,7 @@
 
 namespace Octava\Bundle\JobQueueBundle\DependencyInjection;
 
+use Octava\Bundle\JobQueueBundle\Config;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader;
@@ -25,7 +26,7 @@ class OctavaJobQueueExtension extends Extension
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.yml');
 
-        $definition = $container->getDefinition('octava.job_queue.config');
+        $definition = $container->getDefinition(Config::class);
         $definition->setArguments([$config]);
     }
 }

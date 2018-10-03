@@ -5,6 +5,7 @@ namespace Octava\Bundle\JobQueueBundle\Command;
 use JMS\JobQueueBundle\Command\RunCommand as BaseRunCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
+use Octava\Bundle\JobQueueBundle\Config;
 
 /**
  * Class RunCommand
@@ -12,11 +13,22 @@ use Symfony\Component\Console\Output\OutputInterface;
  */
 class RunCommand extends BaseRunCommand
 {
+    /**
+     * @var Config
+     */
+    private $config;
+
+    public function __construct(Config $config)
+    {
+        $this->config = $config;
+        parent::__construct();
+    }
+
     public function run(InputInterface $input, OutputInterface $output)
     {
         $input->setOption(
             'queue',
-            $this->getContainer()->get('octava.job_queue.config')->getRestrictedQueues()
+            $this->config->getRestrictedQueues()
         );
 
         return parent::execute($input, $output);
