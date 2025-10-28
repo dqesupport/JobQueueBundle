@@ -24,5 +24,10 @@ services:
     Octava\Bundle\JobQueueBundle\Command\RunCommand:
         arguments:
             - '@Octava\Bundle\JobQueueBundle\Config'
+            - '@doctrine'
+            - '@jms_job_queue.job_manager'
+            - '@event_dispatcher'
+            - '%jms_job_queue.queue_options_defaults%'
+            - '%jms_job_queue.queue_options%'
         tags:
             - { name: console.command }

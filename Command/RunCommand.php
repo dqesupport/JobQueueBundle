@@ -3,8 +3,11 @@
 namespace Octava\Bundle\JobQueueBundle\Command;
 
 use JMS\JobQueueBundle\Command\RunCommand as BaseRunCommand;
+use JMS\JobQueueBundle\Entity\Repository\JobManager;
+use Symfony\Bridge\Doctrine\ManagerRegistry;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Octava\Bundle\JobQueueBundle\Config;
 
 /**
@@ -18,10 +21,16 @@ class RunCommand extends BaseRunCommand
      */
     private $config;
 
-    public function __construct(Config $config)
-    {
+    public function __construct(
+        Config $config,
+        ManagerRegistry $managerRegistry,
+        JobManager $jobManager,
+        EventDispatcherInterface $dispatcher,
+        array $queueOptionsDefault,
+        array $queueOptions
+    ) {
         $this->config = $config;
-        parent::__construct();
+        parent::__construct($managerRegistry, $jobManager, $dispatcher, $queueOptionsDefault, $queueOptions);
     }
 
     public function run(InputInterface $input, OutputInterface $output)

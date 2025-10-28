@@ -5,8 +5,7 @@ namespace Octava\Bundle\JobQueueBundle\Admin;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
-use Sonata\AdminBundle\Form\FormMapper;
-use Sonata\AdminBundle\Route\RouteCollection;
+use Sonata\AdminBundle\Route\RouteCollectionInterface;
 use Sonata\AdminBundle\Show\ShowMapper;
 
 /**
@@ -16,18 +15,21 @@ use Sonata\AdminBundle\Show\ShowMapper;
 class JobAdmin extends AbstractAdmin
 {
     /**
-     * @var array
+     * @inheritDoc
      */
-    protected $datagridValues = [
-        '_page' => 1,
-        '_sort_order' => 'DESC',
-        '_sort_by' => 'createdAt',
-    ];
+    protected function configureDefaultSortValues(array &$sortValues): void
+    {
+        $sortValues += [
+            '_page' => 1,
+            '_sort_order' => 'DESC',
+            '_sort_by' => 'createdAt',
+        ];
+    }
 
     /**
-     * @param DatagridMapper $datagridMapper
+     * @inheritDoc
      */
-    protected function configureDatagridFilters(DatagridMapper $datagridMapper)
+    protected function configureDatagridFilters(DatagridMapper $datagridMapper): void
     {
         $datagridMapper
             ->add('id', null, ['label' => 'admin.id'])
@@ -40,9 +42,9 @@ class JobAdmin extends AbstractAdmin
     }
 
     /**
-     * @param ListMapper $listMapper
+     * @inheritDoc
      */
-    protected function configureListFields(ListMapper $listMapper)
+    protected function configureListFields(ListMapper $listMapper): void
     {
         $listMapper
             ->add('id', null, ['label' => 'admin.id'])
@@ -75,9 +77,9 @@ class JobAdmin extends AbstractAdmin
     }
 
     /**
-     * @param ShowMapper $showMapper
+     * @inheritDoc
      */
-    protected function configureShowFields(ShowMapper $showMapper)
+    protected function configureShowFields(ShowMapper $showMapper): void
     {
         $showMapper
             ->add('id', null, ['label' => 'admin.id'])
@@ -104,9 +106,9 @@ class JobAdmin extends AbstractAdmin
     }
 
     /**
-     * @param RouteCollection $collection
+     * @inheritDoc
      */
-    protected function configureRoutes(RouteCollection $collection)
+    protected function configureRoutes(RouteCollectionInterface $collection): void
     {
         parent::configureRoutes($collection);
         $collection->remove('create');
