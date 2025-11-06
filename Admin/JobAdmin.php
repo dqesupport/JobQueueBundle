@@ -65,7 +65,7 @@ class JobAdmin extends AbstractAdmin
             ->add('memoryUsage', null, ['label' => 'admin.memory_usage'])
             ->add('memoryUsageReal', null, ['label' => 'admin.memory_usage_real'])
             ->add(
-                '_action',
+                ListMapper::NAME_ACTIONS,
                 null,
                 [
                     'actions' => [
