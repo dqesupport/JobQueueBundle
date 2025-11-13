@@ -82,6 +82,12 @@ class JobAdmin extends AbstractAdmin
     protected function configureShowFields(ShowMapper $showMapper): void
     {
         $showMapper
+            ->with(
+                'job',
+                [
+                    'label' => 'admin.queue',
+                ]
+            )
             ->add('id', null, ['label' => 'admin.id'])
             ->add('state', null, ['label' => 'admin.state'])
             ->add('queue', null, ['label' => 'admin.queue'])
@@ -102,7 +108,9 @@ class JobAdmin extends AbstractAdmin
             ->add('stackTrace', null, ['label' => 'admin.stack_trace'])
             ->add('runtime', null, ['label' => 'admin.runtime'])
             ->add('memoryUsage', null, ['label' => 'admin.memory_usage'])
-            ->add('memoryUsageReal', null, ['label' => 'admin.memory_usage_real']);
+            ->add('memoryUsageReal', null, ['label' => 'admin.memory_usage_real'])
+            ->end()
+        ;
     }
 
     /**
