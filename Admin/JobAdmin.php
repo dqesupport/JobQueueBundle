@@ -68,8 +68,22 @@ class JobAdmin extends AbstractAdmin
             ->add('maxRuntime', null, ['label' => 'admin.max_runtime'])
             ->add('maxRetries', null, ['label' => 'admin.max_retries'])
             ->add('runtime', null, ['label' => 'admin.runtime'])
-            ->add('memoryUsage', null, ['label' => 'admin.memory_usage'])
-            ->add('memoryUsageReal', null, ['label' => 'admin.memory_usage_real'])
+            ->add(
+                'memoryUsage',
+                'string',
+                [
+                    'label' => 'admin.memory_usage',
+                    'row_align' => 'right'
+                ]
+            )
+            ->add(
+                'memoryUsageReal',
+                'string',
+                [
+                    'label' => 'admin.memory_usage_real',
+                    'row_align' => 'right'
+                ]
+            )
             ->add(
                 ListMapper::NAME_ACTIONS,
                 null,
@@ -113,8 +127,22 @@ class JobAdmin extends AbstractAdmin
             ->add('maxRetries', null, ['label' => 'admin.max_retries'])
             ->add('stackTrace', null, ['label' => 'admin.stack_trace'])
             ->add('runtime', null, ['label' => 'admin.runtime'])
-            ->add('memoryUsage', null, ['label' => 'admin.memory_usage'])
-            ->add('memoryUsageReal', null, ['label' => 'admin.memory_usage_real'])
+            ->add(
+                'memoryUsage',
+                'string',
+                [
+                    'label' => 'admin.memory_usage',
+                    'row_align' => 'right'
+                ]
+            )
+            ->add(
+                'memoryUsageReal',
+                'string',
+                [
+                    'label' => 'admin.memory_usage_real',
+                    'row_align' => 'right'
+                ]
+            )
             ->end()
         ;
     }
