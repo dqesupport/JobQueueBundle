@@ -108,7 +108,13 @@ class JobAdmin extends AbstractAdmin
                     'label' => 'admin.queue',
                 ]
             )
-            ->add('id', null, ['label' => 'admin.id'])
+            ->add(
+                'id',
+                'string',
+                [
+                    'label' => 'admin.id'
+                ]
+            )
             ->add('state', null, ['label' => 'admin.state'])
             ->add('queue', null, ['label' => 'admin.queue'])
             ->add('priority', null, ['label' => 'admin.priority'])
