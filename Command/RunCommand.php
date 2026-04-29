@@ -40,7 +40,7 @@ class RunCommand extends BaseRunCommand
             $this->config->getRestrictedQueues()
         );
 
-        return parent::run($input, $output);
+        return parent::execute($input, $output);
     }
 
     protected function configure(): void
