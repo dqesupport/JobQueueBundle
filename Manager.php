@@ -2,11 +2,10 @@
 
 namespace Octava\Bundle\JobQueueBundle;
 
-use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\EntityRepository;
 use JMS\JobQueueBundle\Entity\Job;
 use JMS\JobQueueBundle\Entity\Repository\JobRepository;
-use Octava\Bundle\JobQueueBundle\Model\JobCollection;
 
 /**
  * Class Manager
@@ -15,7 +14,7 @@ use Octava\Bundle\JobQueueBundle\Model\JobCollection;
 class Manager
 {
     /**
-     * @var EntityManager
+     * @var EntityManagerInterface
      */
     protected $entityManager;
 
@@ -29,12 +28,7 @@ class Manager
      */
     protected $reflection;
 
-    /**
-     * Manager constructor.
-     * @param EntityManager $entityManager
-     * @param Config        $config
-     */
-    public function __construct(EntityManager $entityManager, Config $config)
+    public function __construct(EntityManagerInterface $entityManager, Config $config)
     {
         $this->entityManager = $entityManager;
         $this->config = $config;
@@ -69,9 +63,9 @@ class Manager
         return $result;
     }
 
-    public function flush($entity)
+    public function flush(): void
     {
-        $this->entityManager->flush($entity);
+        $this->entityManager->flush();
     }
 
     /**

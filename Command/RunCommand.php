@@ -33,17 +33,17 @@ class RunCommand extends BaseRunCommand
         parent::__construct($managerRegistry, $jobManager, $dispatcher, $queueOptionsDefault, $queueOptions);
     }
 
-    public function run(InputInterface $input, OutputInterface $output)
+    public function run(InputInterface $input, OutputInterface $output): int
     {
         $input->setOption(
             'queue',
             $this->config->getRestrictedQueues()
         );
 
-        return parent::execute($input, $output);
+        return parent::run($input, $output);
     }
 
-    protected function configure()
+    protected function configure(): void
     {
         parent::configure();
         $this->setName('octava-job-queue:run');

@@ -17,7 +17,7 @@ class DefaultQueueCompiler implements CompilerPassInterface
      *
      * @param ContainerBuilder $container
      */
-    public function process(ContainerBuilder $container)
+    public function process(ContainerBuilder $container): void
     {
         $options = $container->getParameter('jms_job_queue.queue_options');
         $config = $container->getDefinition(Config::class);
