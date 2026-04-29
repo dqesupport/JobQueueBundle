@@ -20,6 +20,11 @@ class Config
     protected $config;
 
     /**
+     * @var array
+     */
+    protected $options;
+
+    /**
      * Config constructor.
      * @param array $config
      * @param array $options
