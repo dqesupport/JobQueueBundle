@@ -24,14 +24,16 @@ services:
             - '@Octava\Bundle\JobQueueBundle\Config'
 
     Octava\Bundle\JobQueueBundle\Admin\JobAdmin:
-        arguments:
-            - ~
-            - JMS\JobQueueBundle\Entity\Job
-            - Octava\Bundle\JobQueueBundle\Controller\JobAdminController
-        calls:
-            - [setTranslationDomain, ['OctavaJobQueueBundle']]
         tags:
-            - { name: sonata.admin, manager_type: orm, group: admin, label: JobQueue }
+            -
+                name: sonata.admin
+                code: ~
+                model_class: JMS\JobQueueBundle\Entity\Job
+                controller: Octava\Bundle\JobQueueBundle\Controller\JobAdminController
+                manager_type: orm
+                group: admin
+                label: JobQueue
+                translation_domain: OctavaJobQueueBundle
         public: true
 
     Octava\Bundle\JobQueueBundle\Command\RunCommand:
