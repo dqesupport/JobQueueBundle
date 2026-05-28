@@ -6,7 +6,7 @@
     "minimum-stability": "stable",
     "require": {
         "doctrine/collections": "^2.1",
-        "jms/job-queue-bundle": "dev-symfony6-7-orm3",
+        "jms/job-queue-bundle": "dev-symfony7-orm3",
         "sonata-project/admin-bundle": "^4.0"
     },
     "extra": {
